@@ -19,7 +19,7 @@ class AuthController extends Controller
         $account = Account::where('name', '=', $request['name'])->get();
 //        dd($request);
         if (hash::check($request['password'], $account[0]->password)) {
-            return redirect('accounts/index');
+            return redirect('TOP/index');
         } else {
 //            Debugbar::info('IDもしくはpassが間違っています');
             return view('auth/index', ['error_id' => $request->error_id]);
@@ -29,11 +29,7 @@ class AuthController extends Controller
 
     public function index(Request $request)
     {
-        Debugbar::info('情報表示だよ');
-        Debugbar::warning('警告だよ');
-        Debugbar::error('エラーだよ');
-
-        return view('auth/index');
+        return view('TOP/index');
     }
 
 }
