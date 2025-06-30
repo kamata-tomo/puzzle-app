@@ -13,4 +13,16 @@ class User extends Model
         'id',
     ];
 
+    public function detail()
+    {
+        return $this->hasOne(UserDetails::Class);
+    }
+
+    public function items()
+    {
+        return $this->belongsToMany(
+            Item::class, 'user_items', 'user_id', 'item_id')
+            ->withPivot('amount');
+    }
+
 }

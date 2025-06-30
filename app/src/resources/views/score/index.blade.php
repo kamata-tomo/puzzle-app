@@ -1,6 +1,6 @@
 <html lang=“ja”>
 <body>
-<h1>■{{$title}}</h1>
+<h1>■{{$title}}■</h1>
 <table border="1">
     <tr>
         <th>id</th>
