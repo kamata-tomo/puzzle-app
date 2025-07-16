@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('stage_cells', function (Blueprint $table) {
             $table->id();
+            $table->integer('stage_id');
+            $table->integer('x');
+            $table->integer('y');
+            $table->integer('object_id');
             $table->timestamps();
         });
     }

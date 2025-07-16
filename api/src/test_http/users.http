@@ -1,0 +1,25 @@
+### ユーザー情報取得
+GET  http://localhost:8000/api/users/1
+Accept:  application/json
+
+### ユーザー一覧取得(Level)
+GET  http://localhost:8000/api/users/index?name=aaa
+Accept:  application/json
+
+### ユーザー登録
+POST http://localhost:8000/api/users/store
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "jobi"
+}
+### ユーザー更新
+POST  http://localhost:8000/api/users/update
+Content-Type: application/json
+Accept:  application/json
+
+{
+    "user_id" : 102
+}
+
