@@ -48,18 +48,27 @@ class UserController extends Controller
             'name' => $request->name,
 
         ]);
-        return response()->json(['user_id' => $user->id]);
+
+        //APIトークンを発行する
+        $token = $user->createToken($request->name)->plainTextToken;
+
+        //ユーザーIDとAPIトークンを返す
+        return response()->json(['token' => $token]);
+
+
     }
     public function update(Request $request)
     {
-        if (empty($request->user_id)) {
-            http_response_code(400);
-            echo "Bad Request: user_idがNULLです。";
-            return;
+//        if (empty($request->user_id)) {
+//            http_response_code(400);
+//            echo "Bad Request: user_idがNULLです。";
+//            return;
+//        }
+
+        $user = User::findOrFail($request->user()->id);
+        if(!empty($request->name)){
+            $user->name = $request->name;
         }
-
-        $user = User::findOrFail($request->user_id);
-
         if(!empty($request->level)){
             $user->level += $request->level;
         }

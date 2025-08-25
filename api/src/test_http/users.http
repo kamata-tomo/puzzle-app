@@ -18,8 +18,9 @@ Accept: application/json
 POST  http://localhost:8000/api/users/update
 Content-Type: application/json
 Accept:  application/json
+Authorization: Bearer 2|AdVm89jVUUA9109pQHa0ZGT4XYrWD3RleYNw4vUw97aba8ed
 
 {
-    "user_id" : 102
+    "level" : 102
 }
 

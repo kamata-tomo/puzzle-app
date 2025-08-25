@@ -17,24 +17,6 @@
 
         </tr>
 
-        <h1>■所持アイテム一覧■</h1>
-
-
-        <table border="1">
-            <tr>
-                <th>id</th>
-                <th>アイテムID</th>
-                <th>アイテム名</th>
-                <th>所持数</th>
-            </tr>
-            　@foreach($users->items as $item)
-                <tr>
-                    <td>{{$item->pivot->id}}</td>
-                    <td>{{$item['id']}}</td>
-                    <td>{{$item['name']}}</td>
-                    <td>{{$item->pivot->amount}}</td>
-                </tr>
-            @endforeach
 
 
         </table>

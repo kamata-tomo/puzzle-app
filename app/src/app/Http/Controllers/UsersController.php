@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+
 use App\Models\User;
-use App\Models\UserItem;
+
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -36,11 +36,6 @@ class UsersController extends Controller
         return view('users/show', ['users' => $users]);
     }
 
-    public function items()
-    {
-        return $this->belongsToMany(
-            Item::class, 'user_items', 'user_id', 'item_id')
-            ->withPivot('amount');
-    }
+
 
 }

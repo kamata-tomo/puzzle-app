@@ -16,6 +16,6 @@ Route::post('users/store',
     ->name('users.store');
 Route::post('users/update',
     [UserController::class, 'update'])
-    ->name('users.update');
+    ->middleware('auth:sanctum')->name('users.update');
 
 

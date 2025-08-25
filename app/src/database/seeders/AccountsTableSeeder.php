@@ -18,7 +18,7 @@ class AccountsTableSeeder extends Seeder
     {
         Account::create([
             'name' => 'jobi',
-            'password' => Hash::make('jobi')
+            'password' => Hash::make('Yoshidajobi2024')
         ]);
 
         //
