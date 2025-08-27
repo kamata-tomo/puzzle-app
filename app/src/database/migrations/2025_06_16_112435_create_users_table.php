@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);
+            $table->string('name', 256);
             $table->integer('level')->default(1);
             $table->integer('Experience')->default(0);
             $table->timestamps();

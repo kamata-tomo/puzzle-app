@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Stage extends Model
+class Friend extends Model
 {
     use HasFactory;
 
@@ -13,13 +13,8 @@ class Stage extends Model
         'id',
     ];
 
-    public function cells()
+    public function user()
     {
-        return $this->hasMany(StageCell::class);
+        return $this->hasOne(User::class, 'id','friend_id');
     }
-
-    public function progres(){
-        return $this->hasOne(StageProgress::class,'stage_id','id');
-    }
-
 }

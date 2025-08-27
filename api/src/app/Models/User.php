@@ -17,16 +17,16 @@ class User extends Authenticatable
         'id',
     ];
 
-    public function detail()
+    public function friend()
     {
-        return $this->hasOne(UserDetails::Class);
+        return $this->hasOne(Friend::class, 'user_id','id');
     }
 
-    public function items()
-    {
-        return $this->belongsToMany(
-            Item::class, 'user_items', 'user_id', 'item_id')
-            ->withPivot('amount');
+    public function progres(){
+        return $this->hasOne(StageProgress::class,'user_id','id');
     }
 
+    public function AcquisitionStatus(){
+        return $this->hasMany(AcquisitionStatus::class);
+    }
 }

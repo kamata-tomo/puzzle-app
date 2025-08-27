@@ -1,6 +1,7 @@
 ### ユーザー情報取得
-GET  http://localhost:8000/api/users/1
+GET  http://localhost:8000/api/users/show
 Accept:  application/json
+Authorization: Bearer 1|t7O92K2iZ9F8ODw5VfmBKOuctWPxDa1zK1KKTJe8175fbed8
 
 ### ユーザー一覧取得(Level)
 GET  http://localhost:8000/api/users/index?name=aaa
@@ -18,9 +19,23 @@ Accept: application/json
 POST  http://localhost:8000/api/users/update
 Content-Type: application/json
 Accept:  application/json
-Authorization: Bearer 2|AdVm89jVUUA9109pQHa0ZGT4XYrWD3RleYNw4vUw97aba8ed
+Authorization: Bearer 1|t7O92K2iZ9F8ODw5VfmBKOuctWPxDa1zK1KKTJe8175fbed8
 
 {
+    "name": "あいう",
     "level" : 102
 }
+###
+POST  http://localhost:8000/api/users/TitleRegistration
+Content-Type: application/json
+Accept:  application/json
+Authorization: Bearer 1|t7O92K2iZ9F8ODw5VfmBKOuctWPxDa1zK1KKTJe8175fbed8
 
+{
+    "title_id": 1
+}
+
+###
+GET  http://localhost:8000/api/users/ShowTitle
+Accept:  application/json
+Authorization: Bearer 1|t7O92K2iZ9F8ODw5VfmBKOuctWPxDa1zK1KKTJe8175fbed8

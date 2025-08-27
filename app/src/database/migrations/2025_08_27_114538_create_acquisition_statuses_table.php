@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stage_progress', function (Blueprint $table) {
+        Schema::create('acquisition_statuses', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('stage_id');
-            $table->integer('evaluation');
-            $table->boolean('collectibles');
+            $table->integer('title_id');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stage_progress');
+        Schema::dropIfExists('acquisition_statuses');
     }
 };
