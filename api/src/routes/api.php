@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('users/index',
-    [UserController::class, 'index'])
-    ->name('users.index');
+//Route::get('users/index',
+//    [UserController::class, 'index'])
+//    ->name('users.index');
 Route::get('users/show',
     [UserController::class, 'show'])
     ->middleware('auth:sanctum')->name('users.show');
