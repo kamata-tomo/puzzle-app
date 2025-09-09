@@ -13,8 +13,10 @@ class FriendRequest extends Model
         'id',
     ];
 
-    public function user()
+    protected $fillable = ['requesting_user_id', 'recipient_id', 'is_reaction'];
+
+    public function requestingUser()
     {
-        return $this->hasOne(User::class, 'id','recipient_id');
+        return $this->belongsTo(User::class, 'requesting_user_id');
     }
 }

@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Friend extends Model
+class StaminaLog extends Model
 {
     use HasFactory;
-
     protected $guarded = [
         'id',
     ];
 
-    protected $fillable = ['user_id', 'friend_id', 'is_provides_stamina'];
-
     public function user()
     {
-        return $this->belongsTo(User::class, 'friend_id');
+        return $this->hasOne(User::class, 'id','provider_id');
     }
 }

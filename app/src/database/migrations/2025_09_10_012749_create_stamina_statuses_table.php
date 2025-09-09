@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('stamina_statuses', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('friend_id');
-            $table->boolean('is_provides_stamina')->default(0);
+            $table->integer('current_stamina')->default(10);
+            $table->integer('max_stamina')->default(10);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('stamina_statuses');
     }
 };
