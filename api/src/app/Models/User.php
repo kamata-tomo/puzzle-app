@@ -16,7 +16,7 @@ class User extends Authenticatable
     protected $guarded = [
         'id',
     ];
-
+/** Friendモデルとの紐付け */
     public function friend()
     {
         return $this->hasOne(Friend::class, 'user_id','id');
@@ -28,5 +28,9 @@ class User extends Authenticatable
 
     public function AcquisitionStatus(){
         return $this->hasMany(AcquisitionStatus::class);
+    }
+
+    public function FriendRequest(){
+        return $this->hasOne(Friend::class, 'requesting_user_id','id');
     }
 }

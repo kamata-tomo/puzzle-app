@@ -12,4 +12,15 @@ class StageProgress extends Model
     protected $guarded = [
         'id',
     ];
+    protected $fillable = ['user_id', 'stage_id', 'evaluation', 'collectibles'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function stage()
+    {
+        return $this->belongsTo(Stage::class);
+    }
 }

@@ -20,4 +20,4 @@ COPY apache2.conf /etc/apache2/apache2.conf
 COPY php.ini /usr/local/etc/php/php.ini
 
 COPY src/ /var/www
-RUN chmod 777 -R /var/www/storage
+#RUN chmod 777 -R /var/www/storage

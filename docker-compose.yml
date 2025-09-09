@@ -19,7 +19,8 @@
 services:
   # WebAPIサーバーコンテナ
   api:
-    build: ./app  # Dockerfileでビルド
+    build: ./api  # Dockerfileでビルド
+    image: puzzle-api
     volumes:
       - ./api/src/:/var/www/                          # Laravelディレクトリ
     ports:
@@ -28,6 +29,7 @@ services:
   # Webサーバーコンテナ
   php:
     build: ./app  # Dockerfileでビルド
+    image: puzzle-app
     volumes:
       - ./app/src/:/var/www/                          # Laravelディレクトリ
     ports:

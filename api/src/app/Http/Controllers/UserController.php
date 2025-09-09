@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
 use App\Models\AcquisitionStatus;
+use App\Models\FriendRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,22 +21,6 @@ class UserController extends Controller
         );
 
     }
-
-//    public function index(Request $request)
-//    {
-//      $validator = Validator::make($request->all(), [
-//            'name' => ['required', 'string'],
-//        ]);
-//
-    //       if ($validator->fails()) {
-    //           return response()->json($validator->errors(), 400);
-    //       }
-//
-    //       $users = User::where('name', "LIKE", "%{$request->name}%")
-//           ->get();/* 名前に〇〇を含む */
-//       return response()->json(
-        //          UserResource::collection($users));
-    //  }
 
     public function store(Request $request)
     {
@@ -77,16 +62,23 @@ class UserController extends Controller
         return response()->json();
     }
 
-    public function ShowTitle(Request $request){
+    public function show_title(Request $request){
         $Title = AcquisitionStatus::where('user_id', '=', $request->user()->id)
                 ->get();
         return response()->json($Title);
     }
-
-    public function TitleRegistration(Request $request){
-        $Title = AcquisitionStatus::create([
+/** ユーザー称号情報の参照 */
+    public function title_registration(Request $request){
+        AcquisitionStatus::create([
             'user_id' => $request->user()->id,
             'title_id' => $request->title_id
+        ]);
+    }
+
+    public function friend_request(Request $request){
+        FriendRequest::create([
+           'requesting_user_id' => $request->user()->id,
+            'recipient_id' => $request->recipient_id
         ]);
     }
 }

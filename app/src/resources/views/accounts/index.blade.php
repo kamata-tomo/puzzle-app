@@ -16,6 +16,6 @@
 
 
 </table>
-<a href="http://localhost/score/index">[スコア一覧]</a>
+
 </body>
 </html>

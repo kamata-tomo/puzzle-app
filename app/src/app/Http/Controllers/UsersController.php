@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\AcquisitionStatus;
+use App\Models\Friend;
+use App\Models\FriendRequest;
+use App\Models\StageProgress;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -18,22 +22,43 @@ class UsersController extends Controller
         return view('users/index', ['title' => $title, 'users' => $data]);
     }
 
-    public function show(Request $request)
+    public function show($userId)
     {
-        $users = User::findOrFail($request->id);
-//        $data = UserItem::select([
-//            'user_items.id  as  id',
-//            'items.id  as  item_id',
-//            'items.name  as  item_name',
-//            'amount'
-//        ])
-//            ->join('items', 'items.id', '=', 'user_items.item_id')
-//            ->join('users', 'users.id', '=', 'user_items.user_id')
-//            ->where('users.id', '=', $request->id)
-//            ->get();
-//        var_dump($users);
-//        $data = User::simplePaginate(10);
-        return view('users/show', ['users' => $users]);
+        $user = User::findOrFail($userId);
+
+        // 称号取得状況
+        $titles = AcquisitionStatus::where('user_id', $userId)->pluck('title_id');
+
+        // ステージ進行状況
+        $stages = StageProgress::with('stage')
+            ->where('user_id', $userId)
+            ->get()
+            ->sortBy(fn($s) => [$s->stage->chapter_num, $s->stage->stage_num]);
+
+        // フレンド関係
+        $friends = Friend::where('user_id', $userId)
+            ->with('friendUser:id,name')
+            ->get()
+            ->pluck('friendUser');
+
+// 申請した
+        $sentRequests = FriendRequest::where('requesting_user_id', $userId)
+            ->where('is_reaction', false)
+            ->with('recipient:id,name')
+            ->get()
+            ->pluck('recipient');
+
+// 申請された
+        $receivedRequests = FriendRequest::where('recipient_id', $userId)
+            ->where('is_reaction', false)
+            ->with('requestingUser:id,name')
+            ->get()
+            ->pluck('requestingUser');
+
+
+        return view('users/show', compact(
+            'user', 'titles', 'stages', 'friends', 'sentRequests', 'receivedRequests'
+        ));
     }
 
 

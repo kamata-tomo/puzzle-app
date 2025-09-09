@@ -1,7 +1,7 @@
 <?php
 
 
-
+use App\Http\Controllers\StageController;
 use App\Http\Controllers\UsersController;
 
 use Illuminate\Support\Facades\Route;
@@ -25,10 +25,13 @@ Route::prefix('users')->name('users.')->controller(UsersController::class)
         Route::get('index', 'index')->name('index');
         Route::get('show/{id}', 'show')->name('show');
     });
-//ユーザー所持アイテム一覧
 
-
-//アイテム
+Route::prefix('stages')->name('stages.')->controller(StageController::class)
+    ->group(function (){
+        Route::get('index', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+    });
 
 
 

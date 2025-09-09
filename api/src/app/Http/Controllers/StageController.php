@@ -10,5 +10,4 @@ use Monolog\Level;
 
 class StageController extends Controller
 {
-
 }

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stage_cells', function (Blueprint $table) {
+        Schema::create('friend_requests', function (Blueprint $table) {
             $table->id();
-            $table->integer('stage_id');
-            $table->integer('piece_type');
-            $table->integer('x');
-            $table->integer('y');
-            $table->boolean('collectibles')->default(false);
+            $table->integer('requesting_user_id');
+            $table->integer('recipient_id');
+            $table->boolean('is_reaction')->default(false);
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stage_cells');
+        Schema::dropIfExists('friend_requests');
     }
 };

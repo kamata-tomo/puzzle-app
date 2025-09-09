@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AcquisitionStatus extends Model
+class FriendRequest extends Model
 {
     use HasFactory;
 
@@ -13,10 +13,8 @@ class AcquisitionStatus extends Model
         'id',
     ];
 
-    protected $fillable = ['user_id', 'title_id'];
-
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class, 'id','recipient_id');
     }
 }
