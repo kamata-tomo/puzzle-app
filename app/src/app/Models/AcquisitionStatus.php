@@ -13,10 +13,14 @@ class AcquisitionStatus extends Model
         'id',
     ];
 
-    protected $fillable = ['user_id', 'title_id'];
+
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function title()
+    {
+        return $this->belongsTo(Titles::class, 'title_id');
     }
 }

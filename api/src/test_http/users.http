@@ -1,11 +1,7 @@
 ### ユーザー情報取得
 GET  http://localhost:8000/api/users/show
 Accept:  application/json
-Authorization: Bearer 1|t7O92K2iZ9F8ODw5VfmBKOuctWPxDa1zK1KKTJe8175fbed8
-
-### ユーザー一覧取得(Level)
-GET  http://localhost:8000/api/users/index?name=aaa
-Accept:  application/json
+Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
 
 ### ユーザー登録
 POST http://localhost:8000/api/users/store
@@ -19,27 +15,76 @@ Accept: application/json
 POST  http://localhost:8000/api/users/update
 Content-Type: application/json
 Accept:  application/json
-Authorization: Bearer 1|t7O92K2iZ9F8ODw5VfmBKOuctWPxDa1zK1KKTJe8175fbed8
+Authorization: Bearer 2|BiFtPIki6OYhbSS9HhVy5DFCuGVxhYePhC8TTE00e13d0727
 
 {
     "name": "あいう",
-    "level" : 102
+    "experience" : 102
 }
 ###
-POST  http://localhost:8000/api/users/TitleRegistration
+POST  http://localhost:8000/api/users/store-title
 Content-Type: application/json
 Accept:  application/json
-Authorization: Bearer 1|t7O92K2iZ9F8ODw5VfmBKOuctWPxDa1zK1KKTJe8175fbed8
+Authorization: Bearer 2|BiFtPIki6OYhbSS9HhVy5DFCuGVxhYePhC8TTE00e13d0727
 
 {
-    "title_id": 1
+    "title_id": 5
 }
 
 ###
-GET  http://localhost:8000/api/users/ShowTitle
+GET  http://localhost:8000/api/users/show-title
 Accept:  application/json
-Authorization: Bearer 1|t7O92K2iZ9F8ODw5VfmBKOuctWPxDa1zK1KKTJe8175fbed8
-
+Authorization: Bearer 2|BiFtPIki6OYhbSS9HhVy5DFCuGVxhYePhC8TTE00e13d0727
 ###
-GET  http://localhost:8000/api/tests
+POST  http://localhost:8000/api/users/store-friend-request
+Content-Type: application/json
 Accept:  application/json
+Authorization: Bearer 2|BiFtPIki6OYhbSS9HhVy5DFCuGVxhYePhC8TTE00e13d0727
+
+{
+    "recipient_id": 101
+}
+###
+GET  http://localhost:8000/api/users/show-friend-request
+Accept:  application/json
+Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+###
+POST  http://localhost:8000/api/users/store-friend
+Content-Type: application/json
+Accept:  application/json
+Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+
+{
+    "requesting_user_id": 102
+}
+###
+GET  http://localhost:8000/api/users/show-friend
+Accept:  application/json
+Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+###
+POST  http://localhost:8000/api/users/stamina-changes-by-reasons
+Content-Type: application/json
+Accept:  application/json
+Authorization: Bearer 2|BiFtPIki6OYhbSS9HhVy5DFCuGVxhYePhC8TTE00e13d0727
+
+{
+    "reason_id": 1,
+    "amount" : 8
+}
+###
+POST  http://localhost:8000/api/users/stamina-auto-recovery
+Content-Type: application/json
+Accept:  application/json
+Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+###
+POST  http://localhost:8000/api/users/provider-stamina
+Content-Type: application/json
+Accept:  application/json
+Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+
+{
+    "friend_id": 102
+}
+###
+
+GET  http://ge202405.japaneast.cloudapp.azure.com/api/tests

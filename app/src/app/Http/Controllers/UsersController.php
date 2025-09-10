@@ -27,7 +27,9 @@ class UsersController extends Controller
         $user = User::findOrFail($userId);
 
         // 称号取得状況
-        $titles = AcquisitionStatus::where('user_id', $userId)->pluck('title_id');
+        $titles = AcquisitionStatus::with('title')
+            ->where('user_id', $userId)
+            ->get();
 
         // ステージ進行状況
         $stages = StageProgress::with('stage')

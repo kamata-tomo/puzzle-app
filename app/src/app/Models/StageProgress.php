@@ -12,7 +12,6 @@ class StageProgress extends Model
     protected $guarded = [
         'id',
     ];
-    protected $fillable = ['user_id', 'stage_id', 'evaluation', 'collectibles'];
 
     public function user()
     {

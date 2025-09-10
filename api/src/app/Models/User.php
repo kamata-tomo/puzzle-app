@@ -16,7 +16,6 @@ class User extends Authenticatable
     protected $guarded = [
         'id',
     ];
-    protected $fillable = ['name', 'level', 'experience'];
 /** Friendモデルとの紐付け */
     public function friend()
     {
@@ -33,7 +32,7 @@ class User extends Authenticatable
 
     public function stamina()
     {
-        return $this->hasOne(StaminaStatus::class, 'user_id');
+        return $this->hasOne(StaminaStatus::class, 'user_id','id');
     }
 
     public function acquisitions()

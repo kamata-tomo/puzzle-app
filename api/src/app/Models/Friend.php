@@ -13,7 +13,6 @@ class Friend extends Model
         'id',
     ];
 
-    protected $fillable = ['user_id', 'friend_id', 'is_provides_stamina'];
 
     public function user()
     {

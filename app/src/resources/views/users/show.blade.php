@@ -12,8 +12,11 @@
                     <p>称号なし</p>
                 @else
                     <ul>
-                        @foreach($titles as $titleId)
-                            <li>Title ID: {{ $titleId }}</li>
+                        @foreach($titles as $status)
+                            <li>
+                                ID: {{ $status->title->id }} -
+                                {{ $status->title->name }}
+                            </li>
                         @endforeach
                     </ul>
                 @endif

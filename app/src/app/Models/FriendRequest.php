@@ -12,7 +12,6 @@ class friendRequest extends Model
     protected $guarded = [
         'id',
     ];
-    protected $fillable = ['requesting_user_id', 'recipient_id', 'is_reaction'];
 
     public function requestingUser()
     {

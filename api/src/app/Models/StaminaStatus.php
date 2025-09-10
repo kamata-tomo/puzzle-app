@@ -11,4 +11,6 @@ class StaminaStatus extends Model
     protected $guarded = [
         'id',
     ];
+
+
 }

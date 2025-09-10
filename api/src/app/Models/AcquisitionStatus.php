@@ -12,4 +12,14 @@ class AcquisitionStatus extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function title()
+    {
+        return $this->belongsTo(Titles::class, 'title_id');
+    }
 }

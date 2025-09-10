@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call(AccountsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
-
+        $this->call(StaminaReasonsSeeder::class);
+        $this->call(TitlesSeeder::class);
     }
 }

@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class staminaStatus extends Model
+class StaminaReasons extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id',
-    ];
+    protected $guarded = ['id'];
 }

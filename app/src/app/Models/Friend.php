@@ -12,7 +12,6 @@ class Friend extends Model
     protected $guarded = [
         'id',
     ];
-    protected $fillable = ['user_id', 'friend_id'];
 
     public function user()
     {

@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('stamina_statuses', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id'); // 外部キー用にunsigned推奨
             $table->integer('current_stamina')->default(10);
             $table->integer('max_stamina')->default(10);
+            $table->timestamp('last_updated_at')->nullable(); // ← 回復計算用に追加
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

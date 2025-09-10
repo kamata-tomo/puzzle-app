@@ -16,4 +16,9 @@ class StaminaLog extends Model
     {
         return $this->hasOne(User::class, 'id','provider_id');
     }
+
+    public function stamina_reason()
+    {
+        return $this->hasOne(StaminaReasons::class, 'id', 'reason_id');
+    }
 }
