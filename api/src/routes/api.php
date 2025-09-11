@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StageController;
 use Illuminate\Support\Facades\Route;
 
 // ユーザー関連API
@@ -66,7 +67,16 @@ Route::prefix('users')->group(function () {
         ->name('users.provider_stamina');
 });
 
-Route::prefix('users')->group(function () {
+Route::prefix('stages')->group(function () {
+    //ステージセレクト用ステージリスト及びステージごとのクリア有無、評価、収集の取得
+    Route::get('show-stage', [StageController::class, 'show_stages'])
+        ->middleware('auth:sanctum')
+        ->name('stages.show_stages');
 
+    Route::post('clear-stage', [StageController::class, 'clear_stage'])
+        ->middleware('auth:sanctum')
+        ->name('stages.clear_stage');
+    Route::post('getCells', [StageController::class, 'getCells'])
+        ->name('stages.getCells');
 });
 Route::get('tests',[TestController::class, 'tests']);

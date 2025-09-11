@@ -1,8 +1,13 @@
 @extends('layouts.app')
 @section('title', 'ステージ情報')
 @section('body')
-    <a href="/TOP/index">[管理画面TOP]</a>
+
+
     <div class="container py-4">
+        <div class="d-flex gap-2 mb-3">
+            <a href="/TOP/index" class="btn btn-secondary shadow-sm">🏠 管理画面TOP</a>
+            <a href="{{ route('stages.index') }}" class="btn btn-primary shadow-sm">📋 ステージ一覧</a>
+        </div>
         <h1 class="mb-4 fw-bold text-center">🎮 ステージ情報エディタ</h1>
 
         <form method="POST" action="{{ route('stages.store') }}" id="stageForm">
@@ -14,16 +19,19 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="chapter_num" class="form-label">チャプター番号</label>
-                            <input type="number" class="form-control" id="chapter_num" name="chapter_num" required>
+                            <input type="number" class="form-control" id="chapter_num" name="chapter_num"
+                                   value="{{ old('chapter_num', $stage->chapter_num ?? '') }}" required>
                         </div>
                         <div class="col">
                             <label for="stage_num" class="form-label">ステージID</label>
-                            <input type="number" class="form-control" id="stage_num" name="stage_num" required>
+                            <input type="number" class="form-control" id="stage_num" name="stage_num"
+                                   value="{{ old('stage_num', $stage->stage_num ?? '') }}" required>
                         </div>
                     </div>
                     <div class="form-check mb-3">
                         <input type="hidden" name="score_criteria_is_time" value="0">
-                        <input class="form-check-input" type="checkbox" name="score_criteria_is_time" value="1" id="isTime">
+                        <input class="form-check-input" type="checkbox" name="score_criteria_is_time" value="1" id="isTime"
+                            {{ old('score_criteria_is_time', $stage->score_criteria_is_time ?? false) ? 'checked' : '' }}>
                         <label class="form-check-label" for="isTime">
                             スコア基準は <strong>時間</strong> である
                         </label>
@@ -31,20 +39,24 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="reference_value_1" class="form-label">⭐ 星1基準値</label>
-                            <input type="number" class="form-control" id="reference_value_1" name="reference_value_1" required>
+                            <input type="number" class="form-control" id="reference_value_1" name="reference_value_1"
+                                   value="{{ old('reference_value_1', $stage->reference_value_1 ?? '') }}" required>
                         </div>
                         <div class="col">
                             <label for="reference_value_2" class="form-label">⭐ 星2基準値</label>
-                            <input type="number" class="form-control" id="reference_value_2" name="reference_value_2" required>
+                            <input type="number" class="form-control" id="reference_value_2" name="reference_value_2"
+                                   value="{{ old('reference_value_2', $stage->reference_value_2 ?? '') }}" required>
                         </div>
                         <div class="col">
                             <label for="reference_value_3" class="form-label">⭐ 星3基準値</label>
-                            <input type="number" class="form-control" id="reference_value_3" name="reference_value_3" required>
+                            <input type="number" class="form-control" id="reference_value_3" name="reference_value_3"
+                                   value="{{ old('reference_value_3', $stage->reference_value_3 ?? '') }}" required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="shuffle_count" class="form-label">🔄 シャッフル回数</label>
-                        <input type="number" class="form-control" id="shuffle_count" name="shuffle_count" min="0" value="0" required>
+                        <input type="number" class="form-control" id="shuffle_count" name="shuffle_count" min="0"
+                               value="{{ old('shuffle_count', $stage->shuffle_count ?? 0) }}" required>
                     </div>
                 </div>
             </div>
@@ -61,7 +73,7 @@
                         <h5 class="mb-2">ピース</h5>
                         @for($i=0; $i<=6; $i++)
                             <button type="button" class="palette-btn" onclick="selectTool({{ $i }}, this)">
-                                    <img src="{{ asset('images/pieces/type'.$i.'.png') }}" class="palette-icon">
+                                <img src="{{ asset('images/pieces/type'.$i.'.png') }}" class="palette-icon">
                             </button>
                         @endfor
                     </div>
@@ -220,6 +232,15 @@
             document.getElementById('cellsInput').value = JSON.stringify(cells);
             this.submit();
         });
+
+        // --- 編集モードのとき既存データを反映 ---
+        @if(isset($stage))
+        const existingCells = @json($stage->cells);
+        existingCells.forEach(cell => {
+            placedPieces[cell.y][cell.x] = cell.piece_type;
+            placedCollectibles[cell.y][cell.x] = !!cell.collectibles;
+        });
+        @endif
 
         drawGrid();
     </script>

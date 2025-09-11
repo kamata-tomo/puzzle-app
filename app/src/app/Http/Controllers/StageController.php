@@ -59,10 +59,17 @@ class StageController extends Controller
             );
         }
 
-        return response()->json([
-            'status'  => 'success',
-            'message' => 'ステージとセルを保存しました',
-            'stage_id' => $stageId,
+        return redirect()
+            ->route('stages.index')
+            ->with('success', 'ステージを作成・更新しました。');
+    }
+    public function edit($id)
+    {
+        $stage = Stage::with('cells')->findOrFail($id); // cells リレーションは要定義
+
+        return view('stages/create', [
+            'stage' => $stage,   // create.blade.php に渡す
         ]);
     }
+
 }

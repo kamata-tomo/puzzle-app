@@ -31,10 +31,7 @@ class UserFactory extends Factory
 
         return [
             'name' => $this->faker->unique()->name(),
-            'level' => $this->faker->numberBetween(1, 100),
-            'Experience' => $this->faker->randomNumber(5),
-            'created_at' => $scheduled_date->format('Y-m-d H:i:s'),
-            'updated_at' => $scheduled_date->modify('+1hour')->format('Y-m-d H:i:s')
+
         ];
     }
 

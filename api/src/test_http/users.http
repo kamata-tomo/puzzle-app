@@ -15,11 +15,10 @@ Accept: application/json
 POST  http://localhost:8000/api/users/update
 Content-Type: application/json
 Accept:  application/json
-Authorization: Bearer 2|BiFtPIki6OYhbSS9HhVy5DFCuGVxhYePhC8TTE00e13d0727
+Authorization: Bearer 1|upFcZfh8NNEmu1zzVYu1UXlDNZ6Q1d7Y244vcYZgab764d0b
 
 {
-    "name": "あいう",
-    "experience" : 102
+    "item_quantity" : 1
 }
 ###
 POST  http://localhost:8000/api/users/store-title
@@ -65,11 +64,10 @@ Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
 POST  http://localhost:8000/api/users/stamina-changes-by-reasons
 Content-Type: application/json
 Accept:  application/json
-Authorization: Bearer 2|BiFtPIki6OYhbSS9HhVy5DFCuGVxhYePhC8TTE00e13d0727
+Authorization: Bearer 1|upFcZfh8NNEmu1zzVYu1UXlDNZ6Q1d7Y244vcYZgab764d0b
 
 {
-    "reason_id": 1,
-    "amount" : 8
+    "reason_id": 2
 }
 ###
 POST  http://localhost:8000/api/users/stamina-auto-recovery
@@ -84,6 +82,29 @@ Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
 
 {
     "friend_id": 102
+}
+###
+GET  http://localhost:8000/api/stages/show-stage
+Accept:  application/json
+Authorization: Bearer 2|SoyyDnscs9soJk1Aa0rjowkiu5o0fnjybwf70TaX6e754666
+###
+POST  http://localhost:8000/api/stages/clear-stage
+Content-Type: application/json
+Accept:  application/json
+Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+
+{
+    "stage_id": 3,
+    "evaluation": 3,
+    "collectibles": 1
+}
+###
+POST  http://localhost:8000/api/stages/getCells
+Content-Type: application/json
+Accept:  application/json
+
+{
+    "stage_id": 1
 }
 ###
 

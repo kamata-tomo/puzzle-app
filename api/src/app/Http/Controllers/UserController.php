@@ -60,6 +60,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'nullable|string',
             'experience' => 'nullable|integer',
+            'item_quantity' => 'nullable|integer'
         ]);
 
         $user = User::with('stamina')->findOrFail($request->user()->id);
@@ -89,6 +90,10 @@ class UserController extends Controller
                 $response = app(UserController::class)->stamina_changes_by_reasons($fakeRequest);
 
             }
+        }
+        if(!empty($request->item_quantity)){
+            $user->item_quantity += $request->item_quantity;
+            $user->save();
         }
 
 
@@ -218,7 +223,7 @@ class UserController extends Controller
 
         $status = StaminaStatus::where('user_id', $request->user()->id)->firstOrFail();
         $reason = StaminaReasons::findOrFail($request->reason_id);
-
+        $user = User::findOrFail($request->user()->id);
         $change = 0;
         switch ($reason->id) {
             case 1: // クエスト消費
@@ -231,7 +236,13 @@ class UserController extends Controller
                 break;
 
             case 2: // アイテム回復
-                $change = +5;
+                if($user->item_quantity > 0) {
+                    $user->item_quantity -= 1;
+                    $user->save();
+                    $change += 5;
+                }else{
+                    return response()->json(['error' => 'スタミナ回復アイテム不足です'], 400);
+                }
                 break;
 
             case 4: // レベルアップ回復

@@ -3,6 +3,31 @@
 @section('body')
     <div class="container">
         <h1>ユーザー状況: {{ $user->name }}</h1>
+        <div class="card mb-4">
+            <div class="card-header">ユーザー情報</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>名前</th>
+                        <th>Lv</th>
+                        <th>経験値</th>
+                        <th>スタミナ回復アイテム個数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->level }}</td>
+                        <td>{{ $user->experience }}</td>
+                        <td>{{ $user->item_quantity }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         {{-- 称号取得 --}}
         <div class="card mb-4">

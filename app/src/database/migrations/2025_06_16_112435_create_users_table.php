@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('name', 256);
             $table->integer('level')->default(1);
             $table->integer('experience')->default(0);
+                $table->integer('item_quantity')->default(0);
             $table->timestamps();
         });
     }

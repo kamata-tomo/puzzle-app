@@ -30,8 +30,10 @@ Route::prefix('stages')->name('stages.')->controller(StageController::class)
     ->group(function (){
         Route::get('index', 'index')->name('index');
         Route::get('create', 'create')->name('create');
+        Route::get('edit/{id}', 'edit')->name('edit');   // ←追加
         Route::post('store', 'store')->name('store');
     });
+
 
 
 

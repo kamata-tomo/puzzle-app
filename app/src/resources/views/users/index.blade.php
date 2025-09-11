@@ -11,6 +11,7 @@
             <th>name</th>
             <th>Lv</th>
             <th>経験値</th>
+            <th>スタミナ回復アイテム個数</th>
         </tr>
         　@foreach($users as $user)
 
@@ -19,8 +20,8 @@
                 <td><a href="/users/show/{{$user['id']}}" id="user{{$user['id']}}">{{$user['name']}}</a>
                 </td>
                 <td>{{$user['level']}}</td>
-                <td>{{$user['Experience']}}</td>
-
+                <td>{{$user['experience']}}</td>
+                <td>{{$user['item_quantity']}}</td>
             </tr>
 
         @endforeach
