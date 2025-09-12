@@ -4,7 +4,7 @@ Accept:  application/json
 Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
 
 ### ユーザー登録
-POST http://localhost:8000/api/users/store
+POST http://ge202405.japaneast.cloudapp.azure.com/api/users/store
 Content-Type: application/json
 Accept: application/json
 
@@ -12,13 +12,13 @@ Accept: application/json
     "name": "jobi"
 }
 ### ユーザー更新
-POST  http://localhost:8000/api/users/update
+POST  http://ge202405.japaneast.cloudapp.azure.com/api/users/update
 Content-Type: application/json
 Accept:  application/json
-Authorization: Bearer 1|upFcZfh8NNEmu1zzVYu1UXlDNZ6Q1d7Y244vcYZgab764d0b
+Authorization: Bearer 1|t4ELYO8Jw6p0IpT9dpXJ0obMo73OvxV75p2V4YUac51f01f1
 
 {
-    "item_quantity" : 1
+    "name" : "aiu"
 }
 ###
 POST  http://localhost:8000/api/users/store-title
