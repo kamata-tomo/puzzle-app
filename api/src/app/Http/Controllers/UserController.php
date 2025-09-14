@@ -301,4 +301,46 @@ class UserController extends Controller
         return response()->json($log);
 
     }
+
+    public function login_bonus(Request $request)
+    {
+        $user = User::findOrFail($request->user()->id);
+        $today = now()->toDateString();
+
+        // すでに今日ログイン済みなら何もしない
+        if ($user->last_login_date === $today) {
+            return response()->json([
+                'message' => '今日のログインボーナスは受け取り済みです',
+                'item_quantity' => $user->item_quantity,
+                'login_streak' => $user->login_streak,
+            ]);
+        }
+
+        // 連続ログイン判定
+        if ($user->last_login_date === now()->copy()->subDay()->toDateString()) {
+            $user->login_streak += 1;
+        } else {
+            $user->login_streak = 1; // 連続切れ → リセット
+        }
+
+        // 基本の1個付与
+        $bonus = 1;
+
+        // 7日ごとに追加でもう1個付与
+        if ($user->login_streak % 7 === 0) {
+            $bonus += 1;
+        }
+
+        $user->item_quantity += $bonus;
+        $user->last_login_date = $today;
+        $user->save();
+
+        return response()->json([
+            'message' => 'ログインボーナス獲得',
+            'bonus' => $bonus,
+            'item_quantity' => $user->item_quantity,
+            'login_streak' => $user->login_streak,
+        ]);
+    }
+
 }

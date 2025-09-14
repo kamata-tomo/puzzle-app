@@ -107,5 +107,11 @@ Accept:  application/json
     "stage_id": 1
 }
 ###
+POST  http://ge202405.japaneast.cloudapp.azure.com/api/users/login-bonus
+Content-Type: application/json
+Accept:  application/json
+Authorization: Bearer 1|KkWDyE1srHm1KLo4YELNlXEZZZF0gMAlvC40Ybi2ad3d89cb
+
+###
 
 GET  http://ge202405.japaneast.cloudapp.azure.com/api/tests

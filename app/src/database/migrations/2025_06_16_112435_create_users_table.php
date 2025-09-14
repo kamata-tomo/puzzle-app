@@ -15,7 +15,9 @@ return new class extends Migration {
             $table->string('name', 256);
             $table->integer('level')->default(1);
             $table->integer('experience')->default(0);
-                $table->integer('item_quantity')->default(0);
+            $table->integer('item_quantity')->default(0);   //回復アイテム個数
+            $table->date('last_login_date')->nullable();   // 最終ログイン日
+            $table->integer('login_streak')->default(0);   // 連続ログイン日数
             $table->timestamps();
         });
     }

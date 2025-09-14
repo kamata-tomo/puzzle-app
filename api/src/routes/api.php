@@ -65,6 +65,10 @@ Route::prefix('users')->group(function () {
     Route::post('provider-stamina', [UserController::class, 'provider_stamina'])
         ->middleware('auth:sanctum')
         ->name('users.provider_stamina');
+    //ログインボーナス(基本1)連続ログイン7日毎に追加で1
+    Route::post('login-bonus', [UserController::class, 'login_bonus'])
+        ->middleware('auth:sanctum')
+        ->name('users.login_bonus');
 });
 
 Route::prefix('stages')->group(function () {
