@@ -203,7 +203,10 @@ class UserController extends Controller
 
         if ($recoverPoints > 0) {
             $status->current_stamina = min($status->max_stamina, $status->current_stamina + $recoverPoints);
-            $status->last_updated_at->addMinutes(5 * $recoverPoints);
+
+            // null なら新しい Carbon をセット
+            $status->last_updated_at = $last->copy()->addMinutes(5 * $recoverPoints);
+
             $status->save();
         }
 
@@ -342,5 +345,54 @@ class UserController extends Controller
             'login_streak' => $user->login_streak,
         ]);
     }
+    public function show_by_id(Request $request) {
+        $request->validate(['user_id' => 'required|integer']);
+        $user = User::with(['acquisitions.title'])->findOrFail($request->user_id);
+
+        $friend = Friend::where('user_id', $request->user()->id)
+            ->where('friend_id', $user->id)->first();
+        $sent = FriendRequest::where('requesting_user_id', $request->user()->id)
+            ->where('recipient_id', $user->id)->exists();
+        $received = FriendRequest::where('requesting_user_id', $user->id)
+            ->where('recipient_id', $request->user()->id)->exists();
+
+        return response()->json([
+            'id' => $user->id,
+            'name' => $user->name,
+            'level' => $user->level,
+            'titles' => $user->acquisitions->map(fn($a)=>[
+                'id'=>$a->title_id,
+                'name'=>$a->title->name ?? null
+            ]),
+            'is_friend' => $friend ? true : false,
+            'is_request_sent' => $sent,
+            'is_request_received' => $received,
+        ]);
+    }
+    public function show_others(Request $request) {
+        $userId = $request->user()->id;
+        $users = User::where('id', '!=', $userId)
+            ->with(['acquisitions.title'])
+            ->get()
+            ->map(function($u) use ($userId) {
+                $isFriend = Friend::where('user_id', $userId)->where('friend_id', $u->id)->exists();
+                $sentRequest = FriendRequest::where('requesting_user_id', $userId)->where('recipient_id', $u->id)->exists();
+                $receivedRequest = FriendRequest::where('recipient_id', $userId)->where('requesting_user_id', $u->id)->exists();
+
+                return [
+                    'id' => $u->id,
+                    'name' => $u->name,
+                    'level' => $u->level,
+                    'titles' => $u->acquisitions->map(fn($a)=>['id'=>$a->title_id,'name'=>$a->title->name])->toArray(),
+                    'is_friend' => $isFriend,
+                    'is_request_sent' => $sentRequest,
+                    'is_request_received' => $receivedRequest,
+                ];
+            });
+        return response()->json($users);
+    }
+
+
+
 
 }

@@ -4,7 +4,7 @@ Accept:  application/json
 Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
 
 ### ユーザー登録
-POST http://ge202405.japaneast.cloudapp.azure.com/api/users/store
+POST http://localhost:8000/api/users/store
 Content-Type: application/json
 Accept: application/json
 
@@ -46,20 +46,21 @@ Authorization: Bearer 2|BiFtPIki6OYhbSS9HhVy5DFCuGVxhYePhC8TTE00e13d0727
 ###
 GET  http://localhost:8000/api/users/show-friend-request
 Accept:  application/json
-Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+Authorization: Bearer 3|VXZ6vTsg20maWEpXC65b6RyNF0iT2vV0g2mtmgBuf6cb59bf
 ###
-POST  http://localhost:8000/api/users/store-friend
+POST  http://localhost:8000/api/users/provider-stamina
 Content-Type: application/json
 Accept:  application/json
-Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+Authorization: Bearer 3|VXZ6vTsg20maWEpXC65b6RyNF0iT2vV0g2mtmgBuf6cb59bf
 
 {
-    "requesting_user_id": 102
+    "friend_id": 11
 }
 ###
 GET  http://localhost:8000/api/users/show-friend
 Accept:  application/json
-Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+Authorization: Bearer 1|kOIzKcHAabhnuS4TD8acE6YoGhJzKw0vX0x3tUmD94385891
+
 ###
 POST  http://localhost:8000/api/users/stamina-changes-by-reasons
 Content-Type: application/json
@@ -70,33 +71,28 @@ Authorization: Bearer 1|upFcZfh8NNEmu1zzVYu1UXlDNZ6Q1d7Y244vcYZgab764d0b
     "reason_id": 2
 }
 ###
+POST  http://ge202405.japaneast.cloudapp.azure.com/api/users/stamina-auto-recovery
+Content-Type: application/json
+Accept:  application/json
+Authorization: Bearer 2|joExWsb1u5kdPS7NvDqW7j11ai2X6RamecaJrFsy6fa9264d
+###
 POST  http://localhost:8000/api/users/stamina-auto-recovery
 Content-Type: application/json
 Accept:  application/json
-Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+Authorization: Bearer 1|kOIzKcHAabhnuS4TD8acE6YoGhJzKw0vX0x3tUmD94385891
+
 ###
-POST  http://localhost:8000/api/users/provider-stamina
+GET  http://ge202405.japaneast.cloudapp.azure.com/api/stages/show-stage
+Accept:  application/json
+Authorization: Bearer 1|TSY2Ci4mM6SIqIOjPl96uOusi4dEByN9n4sTYg4hc1a0ae85
+###
+POST  http://localhost:8000/api/users/show-by-id
 Content-Type: application/json
 Accept:  application/json
-Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
+Authorization: Bearer 2|p1aHyy1BvL2e2N0bHLT6h5H1a3PV7B8mF5ant1tV932eff1d
 
 {
-    "friend_id": 102
-}
-###
-GET  http://localhost:8000/api/stages/show-stage
-Accept:  application/json
-Authorization: Bearer 2|SoyyDnscs9soJk1Aa0rjowkiu5o0fnjybwf70TaX6e754666
-###
-POST  http://localhost:8000/api/stages/clear-stage
-Content-Type: application/json
-Accept:  application/json
-Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
-
-{
-    "stage_id": 3,
-    "evaluation": 3,
-    "collectibles": 1
+    "user_id": 11
 }
 ###
 POST  http://localhost:8000/api/stages/getCells

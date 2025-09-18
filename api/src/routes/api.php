@@ -69,6 +69,14 @@ Route::prefix('users')->group(function () {
     Route::post('login-bonus', [UserController::class, 'login_bonus'])
         ->middleware('auth:sanctum')
         ->name('users.login_bonus');
+    Route::get('show-others', [UserController::class, 'show_others'])
+        ->middleware('auth:sanctum')
+        ->name('users.show_others');
+
+    Route::post('show-by-id', [UserController::class, 'show_by_id'])
+        ->middleware('auth:sanctum')
+        ->name('users.show_by_id');
+
 });
 
 Route::prefix('stages')->group(function () {
