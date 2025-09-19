@@ -28,14 +28,14 @@
                                    value="{{ old('stage_num', $stage->stage_num ?? '') }}" required>
                         </div>
                     </div>
-                    <div class="form-check mb-3">
-                        <input type="hidden" name="score_criteria_is_time" value="0">
-                        <input class="form-check-input" type="checkbox" name="score_criteria_is_time" value="1" id="isTime"
-                            {{ old('score_criteria_is_time', $stage->score_criteria_is_time ?? false) ? 'checked' : '' }}>
+                    {{--                   <div class="form-check mb-3">
+                                            <input type="hidden" name="score_criteria_is_time" value="0">
+                                            <input class="form-check-input" type="checkbox" name="score_criteria_is_time" value="1" id="isTime"
+                                                {{ old('score_criteria_is_time', $stage->score_criteria_is_time ?? false) ? 'checked' : '' }}>
                         <label class="form-check-label" for="isTime">
                             スコア基準は <strong>時間</strong> である
                         </label>
-                    </div>
+                    </div>--}}
                     <div class="row mb-3">
                         <div class="col">
                             <label for="reference_value_1" class="form-label">⭐ 星1基準値</label>

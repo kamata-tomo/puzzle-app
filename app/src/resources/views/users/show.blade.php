@@ -13,8 +13,9 @@
                         <th>名前</th>
                         <th>Lv</th>
                         <th>経験値</th>
+                        {{--
                         <th>スタミナ回復アイテム個数</th>
-                        <th>連続ログイン日数</th>
+                        <th>連続ログイン日数</th>--}}
                     </tr>
                     </thead>
                     <tbody>
@@ -23,8 +24,8 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->level }}</td>
                         <td>{{ $user->experience }}</td>
-                        <td>{{ $user->item_quantity }}</td>
-                        <td>{{ $user->login_streak }}</td>
+                        {{--<td>{{ $user->item_quantity }}</td>
+                        <td>{{ $user->login_streak }}</td>--}}
                     </tr>
                     </tbody>
                 </table>
