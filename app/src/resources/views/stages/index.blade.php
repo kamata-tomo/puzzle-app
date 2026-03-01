@@ -20,7 +20,7 @@
         <tr>
             <th>id</th>
             <th>ステージ</th>
-            <th>評価基準が時間か否か</th>
+            {{--<th>評価基準が時間か否か</th>--}}
             <th>星1基準</th>
             <th>星2基準</th>
             <th>星3基準</th>
@@ -34,9 +34,9 @@
                     </a>
                 </td>
                 <td>{{ $stage['chapter_num'] }}-{{ $stage['stage_num'] }}</td>
-                <td style="text-align: center">
+                {{--<td style="text-align: center">
                     {{ $stage['score_criteria_is_time'] ? '◯' : '✕' }}
-                </td>
+                </td>--}}
                 <td>{{ $stage['reference_value_1'] }}</td>
                 <td>{{ $stage['reference_value_2'] }}</td>
                 <td>{{ $stage['reference_value_3'] }}</td>
