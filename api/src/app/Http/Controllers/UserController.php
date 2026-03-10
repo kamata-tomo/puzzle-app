@@ -128,6 +128,7 @@ class UserController extends Controller
 
     public function show_friend_request(Request $request){
         $requests = FriendRequest::where('recipient_id', $request->user()->id)
+            ->where('is_reaction', false)
             ->with(['requestingUser.acquisitions'])
             ->get();
 

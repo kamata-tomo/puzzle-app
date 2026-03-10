@@ -4,7 +4,7 @@ Accept:  application/json
 Authorization: Bearer 1|4UPxfsbhSyvGoyCo0Qqxs5rDxNZE4lAbKnDhTgcrd1361697
 
 ### ユーザー登録
-POST http://ge202405.japaneast.cloudapp.azure.com/api/users/store
+POST http://ge202400.japaneast.cloudapp.azure.com:22222/api/users/store
 Content-Type: application/json
 Accept: application/json
 
@@ -44,9 +44,9 @@ Authorization: Bearer 2|BiFtPIki6OYhbSS9HhVy5DFCuGVxhYePhC8TTE00e13d0727
     "recipient_id": 101
 }
 ###
-GET  http://localhost:8000/api/users/show-friend-request
+GET  http://ge202400.japaneast.cloudapp.azure.com:22222/api/users/show-friend-request
 Accept:  application/json
-Authorization: Bearer 3|VXZ6vTsg20maWEpXC65b6RyNF0iT2vV0g2mtmgBuf6cb59bf
+Authorization: Bearer 2|HLgo4ZPSXhm3voaajjbLlhV8Fj3pZ8IEhSnbA7Nua5be3173
 ###
 POST  http://localhost:8000/api/users/provider-stamina
 Content-Type: application/json
